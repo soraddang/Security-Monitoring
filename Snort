@@ -1,0 +1,22 @@
+1) 설치 전 네트워크 카드명 변경
+apt-get update
+apt-get install net-tools
+nano /etc/default/grub 
+     GRUB_CMDLINE_LINUX="find_pressed=/preseed.cfg auto noprompt priority=critical locale=en_US net.ifnames=0 biosdevname=0"
+grub-mkconfig -o /boot/grub/grub.cfg
+reboot
+
+2) Snort 설치와 확인 
+apt-get install -y snort
+snort -V
+
+3) Snort 설정 파일
+snort -T -c /etc/snort/snort.conf    
+
+snort -i eth0 -c /etc/snort/snort.conf
+
+4) Snort 로그파일 
+snort -A console -c /etc/snort/snort.conf
+
+tail -f /var/log/snort/snort.alert.fast
+
