@@ -1,4 +1,5 @@
 alert tcp any any -> 192.168.10.0 any (msg:"Xmas Port Scan Detection";sid:3000003;flags:UPF;)
 alert tcp 192.168.10.20/32 23 -> 192.168.10.10/32 any ( msg: “Telnet Attack“;sid:3000004;content:“login incorrect“; nocase;  threshold:type both, track by_src, count 3, seconds 20;)
 alert tcp any any -> 192.168.10.0 80 (msg:"TCP SYN Flooding Attack";sid:3000005; flags:S; threshold:type threshold, track by_src, count 5, seconds 1;)
+alert ip any any -> any any (msg:"Ping of Death"; content:"|58585858|"; threshold: type of both, track by_src, count 20, seconds 10; sid: 3000006;)
 
