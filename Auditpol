@@ -1,9 +1,10 @@
+[파일시스템 감사정책 활성화]
 auditpol /set /subcategory:"File System" /success:enable /failure:enable
 auditpol /set /subcategory:"파일 시스템" /success:enable /failure:enable
 [확인] auditpol /get /subcategory:"파일 시스템"
 
-auditpol /set /subcategory:"Registry" /success:enable /failure:enable
 
+[USB 감사정책 활성화]
 auditpol /set /subcategory:"Removable Storage" /success:enable /failure:enable
 auditpol /set /subcategory:"이동식 저장소" /success:enable /failure:enable
 [확인] auditpol /get /subcategory:"이동식 저장소"
