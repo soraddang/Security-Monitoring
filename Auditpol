@@ -5,5 +5,5 @@ auditpol /set /subcategory:"파일 시스템" /success:enable /failure:enable
 auditpol /set /subcategory:"Registry" /success:enable /failure:enable
 
 auditpol /set /subcategory:"Removable Storage" /success:enable /failure:enable
-auditpol /set /subcategory:"이동식 스토리지" /success:enable /failure:enable
-[확인] auditpol /get /subcategory:"이동식 스토리지"
+auditpol /set /subcategory:"이동식 저장소" /success:enable /failure:enable
+[확인] auditpol /get /subcategory:"이동식 저장소"
