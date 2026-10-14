@@ -1,3 +1,14 @@
+1. Window HomeEdition에 로컬보안정책 설치명령어
+
+FOR %F IN ("%SystemRoot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~*.mum") DO (DISM /Online /NoRestart /Add-Package:"%F")
+
+FOR %F IN ("%SystemRoot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientExtensions-Package~*.mum") DO (DISM /Online /NoRestart /Add-Package:"%F")
+
+--------------------------------------------------------------
+또는 
+
+2. Window HomeEdition에 지정된 감사정책 활성화
+
 [파일시스템 감사정책 활성화]
 auditpol /set /subcategory:"File System" /success:enable 
 auditpol /set /subcategory:"파일 시스템" /success:enable 
