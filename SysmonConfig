@@ -1,0 +1,37 @@
+1)  파일 /sysmon/sysconfig.xml 생성
+
+<Sysmon schemaversion="4.80">
+<EventFiltering>
+<!-- 1. Event ID 2: 파일 생성 시간 변경 (타임스톰프) 감시 -->
+<RuleGroup name="FileTimeChange" groupRelation="or">
+<FileCreateTime onmatch="include">
+<TargetFilename condition="begin with">C:</TargetFilename>
+</FileCreateTime>
+</RuleGroup>
+
+<!-- 2. Event ID 3: 네트워크 연결 감시 -->
+<RuleGroup name="NetworkLog" groupRelation="and">
+<NetworkConnect onmatch="exclude">
+<Image condition="end with">chrome.exe</Image>
+<Image condition="end with">msedge.exe</Image>
+<Image condition="end with">whale.exe</Image>
+</NetworkConnect>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
+
+
+2) sysmon 환경 설정 시스템에 적용 
+sysmon -c sysmon/sysconfig.xml
+sysmon -c
+
+3) c:/test 폴더에 aaa.txt 파일 생성 
+
+
+4) 파일의 생성/수정 시간 강제 변경
+[Powershell]
+(Get-Item "c:\TEST\aaa.txt").CreationTime = [datetime]"2010-01-01 00:00:00"
+(Get-Item "c:\TEST\aaa.txt").LastWriteTime = [datetime]"2010-01-01 00:00:00"
+
+[시간 변경 확인]
+Get-Item "c:\TEST\aaaa.txt" | Select-Object Name, CreationTime, LastWriteTime
